@@ -320,7 +320,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 								<section>
 									<h3 class="major">Form</h3>
-									<form action="https://api.web3forms.com/submit" method="POST" class="no-ajax">
+									<form id="web3form">
 										<input type="hidden" name="access_key" value="f14cb2df-2a66-46be-8506-7c3badecbb9a">
 										<div class="fields">
 											<div class="field">
@@ -389,6 +389,23 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+		<script>
+			document.getElementById('web3form').addEventListener('submit', function(e) {
+                e.preventDefault();
+				const formData = new FormData(this);
+				fetch('https://api.web3forms.com/submit', {
+					method: 'POST',
+					body: formData
+				}).then(response => {
+					alert('Submitted Successfully!');
+					this.reset();
+				}).catch(error => {
+					alert('Please try again');
+				});
+
+        });
+
+</script>
 
 	</body>
 </html>
