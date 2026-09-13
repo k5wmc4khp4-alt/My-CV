@@ -390,28 +390,34 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 		<script>
-    document.getElementById('web3form').addEventListener('submit', function(e) {
-        e.preventDefault();
+  const form = document.getElementById('web3form');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // บรรทัดนี้สำคัญที่สุด คือการ "หยุด" ไม่ให้ส่งแบบปกติ
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
 
-        const formData = new FormData(this);
-
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("ส่งข้อมูลเรียบร้อยแล้ว!");
-                this.reset();
-            } else {
-                alert("เกิดข้อผิดพลาด: " + data.message);
-            }
-        })
-        .catch(error => {
-            alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
-        });
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
+    })
+    .then(async (response) => {
+      let json = await response.json();
+      if (response.status == 200) {
+        alert("ส่งข้อมูลเรียบร้อยแล้ว!");
+        form.reset();
+      } else {
+        alert(json.message);
+      }
+    })
+    .catch(error => {
+      alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
     });
+  });
 </script>
     
 	</body>
