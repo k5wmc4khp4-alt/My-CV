@@ -46,7 +46,7 @@
 						<!-- About -->
 							<article id="About">
 								<h2 class="major">About</h2>
-								<span class="image main"><img src="images/IMG_8151.jpg" /></span>
+								<span class="image main"><img src="images/IMG_8151.jpg" /></span> 
 								<p>Hello, I am Walaipan Siriwichian. I have a degree in Business Communication from Silpakorn University. I have been an Administrator for 2 years.</p>
 								<p>I am developing my skills to become a Data Analyst, Full-Stack Developer,  and Data transformation specialist, with a particular interest in cleaning, organizing, and analyzing raw data to uncover meaningful insights that support informed decisions. I am currently learning HTML, JavaScript, CSS, SQL, and Python to build websites, manage databases, and transform raw data into formats ready for use in applications and websites.</p>
 								<p>I am seeking an entry-level opportunity in Full-Stack Development, Web Development, UX/UL design, or data transformation to further develop my skills and contribute to building efficient systems.</p>
@@ -409,14 +409,14 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
     .then(async (response) => {
       let json = await response.json();
       if (response.status == 200) {
-        alert("ส่งข้อมูลเรียบร้อยแล้ว!");
+        alert("Submitted Successfully !");
         form.reset();
       } else {
         alert(json.message);
       }
     })
     .catch(error => {
-      alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+      alert("An error occurred. Please try again.");
     });
   });
 </script>
